@@ -1,38 +1,52 @@
-import * as React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-import Constants from 'expo-constants';
+import React, {Component} from 'react';
+import { Text, View, StyleSheet } from 'react-native'
+import Constants from 'expo-constants'
+import Button from './src/components/Button'
+import Display from './src/components/Display'
 
-// You can import from local files
-import AssetExample from './components/AssetExample';
+export default class App extends Component {
+  state ={
+    displayValue: '0'
+  }
 
-// or any pure javascript modules available in npm
-import { Card } from 'react-native-paper';
+  addDigit = n => {
+    this.setState({ displayValue: n})
+  }
 
-export default function App() {
-  return (
+  render(){
+    return (
     <View style={styles.container}>
-      <Text style={styles.paragraph}>
-        Change code in the editor and watch it change on your phone! Save to get a shareable url.
-      </Text>
-      <Card>
-        <AssetExample />
-      </Card>
+    <Display value={this.state.displayValue}/>
+      <View style={styles.buttons}>
+        <Button label='AC' />
+        <Button label='/' />
+        <Button label='7' />
+        <Button label='8' />
+        <Button label='9' />
+        <Button label='*' />
+        <Button label='4' />
+        <Button label='5' />
+        <Button label='6' />
+        <Button label='-' />
+        <Button label='1' />
+        <Button label='2' />
+        <Button label='3' />
+        <Button label='+' />
+        <Button label='0' />
+        <Button label='.' />
+        <Button label='=' />
+      </View>
     </View>
   );
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    paddingTop: Constants.statusBarHeight,
-    backgroundColor: '#ecf0f1',
-    padding: 8,
   },
-  paragraph: {
-    margin: 24,
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
+  buttons: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  }
 });
